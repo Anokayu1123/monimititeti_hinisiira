@@ -34,7 +34,6 @@
     <div id="setup">
         <h2>良い子は怪しいバナーを踏んではいけません。</h2>
         <p>何にも触れずにおとなしくページを閉じてください。</p>
-	<p>音割れ注意! </p>
         <button onclick="playTarget()">黙れ小僧ッ!</button>
     </div>
 
@@ -71,5 +70,18 @@
             };
         }
     </script>
+	// ページを離れようとしたときに警告を出す
+window.onbeforeunload = function() {
+    return "戻るんやなくて閉じれいうたやろがい";
+};
+
+function playTarget() {
+    // 動画再生時は警告を無効化する（スムーズに再生するため）
+    window.onbeforeunload = null; 
+    
+    document.getElementById('setup').style.display = 'none';
+    document.getElementById('video-container').style.display = 'block';
+    document.getElementById('myVideo').play();
+}
 </body>
 </html>
