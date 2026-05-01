@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欠席50連の秘訣</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #f0f2f5; font-family: sans-serif; }
+        
+        /* 最初の確認画面 */
+        #setup {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 100vh; text-align: center;
+        }
+        button {
+            padding: 15px 40px; font-size: 1.2rem; font-weight: bold; cursor: pointer;
+            background-color: #007bff; color: white; border: none; border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* ビデオプレイヤー（最初は隠す） */
+        #video-container {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100vw; height: 100vh; background: black;
+        }
+        video {
+            width: 100%; height: 100%; object-fit: contain; /* 画面に合わせて調整 */
+        }
+    </style>
+</head>
+<meta name="robots" content="noindex, nofollow">
+<body>
+
+    <div id="setup">
+        <h2>良い子は怪しいバナーを踏んではいけません。</h2>
+        <p>何にも触れずにおとなしくページを閉じてください。</p>
+	<p>音割れ注意! </p>
+        <button onclick="playTarget()">黙れ小僧ッ!</button>
+    </div>
+
+    <div id="video-container">
+        <!-- 
+          playsinline: iPhone等でのブラウザ内再生を強制
+          disablePictureInPicture: 小窓化を禁止
+        -->
+        <video id="myVideo" playsinline disablePictureInPicture>
+            <source src="miraniton_sunisokusurarari.mp4" type="video/mp4">
+            お使いのブラウザは動画再生に対応していません。
+        </video>
+    </div>
+
+    <script>
+        function playTarget() {
+            const container = document.getElementById('video-container');
+            const video = document.getElementById('myVideo');
+            const setup = document.getElementById('setup');
+
+            // 画面切り替え
+            setup.style.display = 'none';
+            container.style.display = 'block';
+
+            // 再生開始
+            video.play().catch(error => {
+                console.log("再生エラー:", error);
+                alert("エラーが発生しました。もう一度お試しください。");
+            });
+
+            // 動画が終了したら自動的に閉じる、などの処理も追加可能
+            video.onended = function() {
+                alert("ドキュメントの末尾です。");
+            };
+        }
+    </script>
+</body>
+</html>
