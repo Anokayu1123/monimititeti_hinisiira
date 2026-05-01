@@ -69,10 +69,9 @@
                 alert("ドキュメントの末尾です。");
             };
         }
-    </script>
-	// ページを離れようとしたときに警告を出す
+		// ページを離れようとしたときに警告を出す
 window.onbeforeunload = function() {
-    return "戻るんやなくて閉じれいうたやろがい";
+    return "このページを離れてもよろしいですか？";
 };
 
 function playTarget() {
@@ -83,5 +82,7 @@ function playTarget() {
     document.getElementById('video-container').style.display = 'block';
     document.getElementById('myVideo').play();
 }
+    </script>
+	
 </body>
 </html>
